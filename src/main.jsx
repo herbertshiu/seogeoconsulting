@@ -1,0 +1,97 @@
+import React, { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ArrowUpRight, BookOpen, Check, ChevronRight, ExternalLink, Menu, Search, Sparkles, X } from 'lucide-react';
+import './styles.css';
+
+const sources = [
+  { n: '01', label: 'Google Search Central', title: 'SEO Starter Guide', href: 'https://developers.google.com/search/docs/fundamentals/seo-starter-guide' },
+  { n: '02', label: 'Google Search Central', title: 'Structured data markup', href: 'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data' },
+  { n: '03', label: 'Microsoft Bing', title: 'AI Performance in Webmaster Tools', href: 'https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview' },
+  { n: '04', label: 'OpenAI', title: 'Overview of OpenAI crawlers', href: 'https://developers.openai.com/api/docs/bots' },
+];
+
+const insights = [
+  { tag: 'FOUNDATION', title: 'The search surface is now a conversation', text: 'Classic rankings still matter. But the new question is whether your brand is clear enough to be selected, summarized, and cited in an answer.', href: '#insights' },
+  { tag: 'STRUCTURE', title: 'Build an evidence layer, not a content pile', text: 'The most useful SEO program connects entities, proof, first-hand experience, and internal links into one navigable knowledge system.', href: '#insights' },
+  { tag: 'MEASUREMENT', title: 'Visibility is bigger than a position number', text: 'Track the full journey: impressions, qualified visits, branded demand, assisted conversions, and the pages that earn citations.', href: '#insights' },
+];
+
+function Meta({ title, description, path = '' }) {
+  useEffect(() => {
+    document.title = title;
+    const set = (name, content, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let el = document.querySelector(selector);
+      if (!el) { el = document.createElement('meta'); property ? el.setAttribute('property', name) : el.setAttribute('name', name); document.head.appendChild(el); }
+      el.setAttribute('content', content);
+    };
+    set('description', description);
+    set('og:title', title, true);
+    set('og:description', description, true);
+    set('og:type', 'website', true);
+    set('og:url', `https://seogeoconsulting.hk${path}`, true);
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement('link'); canonical.setAttribute('rel', 'canonical'); document.head.appendChild(canonical); }
+    canonical.setAttribute('href', `https://seogeoconsulting.hk${path}`);
+  }, [title, description, path]);
+  return null;
+}
+
+function Schema({ page = 'home' }) {
+  useEffect(() => {
+    const data = page === 'playbook' ? {
+      '@context': 'https://schema.org', '@type': 'Article', headline: 'The SEO / GEO Playbook', description: 'A practical system for making expertise discoverable in search and AI answers.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, mainEntityOfPage: 'https://seogeoconsulting.hk/playbook'
+    } : {
+      '@context': 'https://schema.org', '@type': 'WebSite', name: 'SEO / GEO Consulting', url: 'https://seogeoconsulting.hk', description: 'Practical SEO and generative engine optimization guidance for ambitious teams.', potentialAction: { '@type': 'SearchAction', target: 'https://seogeoconsulting.hk/?q={search_term_string}', 'query-input': 'required name=search_term_string' }
+    };
+    let script = document.getElementById('structured-data');
+    if (!script) { script = document.createElement('script'); script.id = 'structured-data'; script.type = 'application/ld+json'; document.head.appendChild(script); }
+    script.textContent = JSON.stringify(data);
+  }, [page]);
+  return null;
+}
+
+function Header() {
+  const [open, setOpen] = React.useState(false);
+  return <header className="site-header"><div className="nav-wrap">
+    <a className="brand" href="/" aria-label="SEO / GEO Consulting home"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a>
+    <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">
+      <a href="/#method">Method</a><a href="/playbook">Playbook</a><a href="/#insights">Field notes</a><a href="/#about">About</a>
+      <a className="nav-cta" href="https://itehk.com.hk" target="_blank" rel="noreferrer">Visit itehk.com.hk <ArrowUpRight size={16} /></a>
+    </nav>
+    <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button>
+  </div></header>;
+}
+
+function ArrowLink({ children, href = '#' }) { return <a className="arrow-link" href={href}>{children}<ArrowUpRight size={16} /></a>; }
+
+function Home() {
+  return <><Meta title="SEO / GEO Consulting — Make your expertise easy to find" description="A practical field guide to SEO and generative engine optimization for ambitious teams building durable visibility." /><Schema /><Header />
+    <main>
+      <section className="hero section-shell"><div className="hero-copy">
+        <p className="eyebrow"><span className="pulse"></span> SEARCH IS CHANGING. YOUR SIGNAL SHOULD TOO.</p>
+        <h1>Make your<br /><span>expertise</span><br />easy to find.</h1>
+        <p className="hero-lede">SEO makes you discoverable. GEO makes you quotable. We connect the two so the right people find, trust, and remember your brand.</p>
+        <div className="hero-actions"><a className="button button-primary" href="/playbook">Read the playbook <ArrowUpRight size={17} /></a><a className="text-link" href="#method">See our method <ChevronRight size={16} /></a></div>
+      </div><div className="hero-art" aria-label="Abstract graphic representing connected search signals"><div className="orbit orbit-one"></div><div className="orbit orbit-two"></div><div className="orbit orbit-three"></div><div className="signal signal-a">SEO</div><div className="signal signal-b">GEO</div><div className="signal signal-c">TRUST</div><div className="art-core"><span>↗</span></div><div className="art-note"><span className="note-dot"></span><strong>Clear signals</strong><br />compound over time</div></div></section>
+      <section className="proof-strip"><div><span className="strip-number">01</span><strong>People-first content</strong><span>Useful before it is optimised.</span></div><div><span className="strip-number">02</span><strong>Machine-readable proof</strong><span>Structured for retrieval.</span></div><div><span className="strip-number">03</span><strong>Compounding authority</strong><span>Built to earn the next click.</span></div></section>
+      <section className="intro section-shell" id="about"><div className="section-label">01 / WHY THIS MATTERS</div><div className="intro-content"><h2>The best answer is the one people can <span>verify.</span></h2><div><p>Search has moved from a list of links toward a layer of answers, summaries, and recommendations. That does not make the fundamentals obsolete. It makes clarity, evidence, and a coherent point of view more valuable.</p><p>We publish practical guidance for teams that want visibility without chasing every algorithm update. The work is simple to describe: make useful knowledge easy for people and systems to understand.</p><ArrowLink href="/playbook">Explore the full framework</ArrowLink></div></div></section>
+      <section className="method section-shell" id="method"><div className="section-label">02 / THE METHOD</div><div className="method-intro"><h2>Four moves.<br /><span>One durable signal.</span></h2><p>Strong organic visibility is not one trick. It is the result of connected decisions, made consistently across content, code, and credibility.</p></div><div className="method-grid"><article><span className="card-index">01</span><h3>Define the entity</h3><p>Make it obvious who you are, what you know, whom you serve, and how your offer fits into the wider category.</p><ArrowLink href="/playbook#entity">Read the move</ArrowLink></article><article><span className="card-index">02</span><h3>Answer the intent</h3><p>Build pages around real questions. Lead with a direct answer, then add context, examples, and the next useful step.</p><ArrowLink href="/playbook#intent">Read the move</ArrowLink></article><article><span className="card-index">03</span><h3>Prove the claim</h3><p>Use first-hand observations, transparent methodology, citations, and outcomes to give both readers and engines something to trust.</p><ArrowLink href="/playbook#proof">Read the move</ArrowLink></article><article><span className="card-index">04</span><h3>Measure the mention</h3><p>Look beyond rank. Monitor qualified discovery, branded demand, assisted action, and whether your pages are being referenced.</p><ArrowLink href="/playbook#measure">Read the move</ArrowLink></article></div></section>
+      <section className="notes section-shell" id="insights"><div className="section-label">03 / FIELD NOTES</div><div className="notes-heading"><h2>Ideas worth <span>keeping.</span></h2><ArrowLink href="/playbook">View all notes</ArrowLink></div><div className="insight-grid">{insights.map((item, i) => <article className="insight" key={item.title}><span className="insight-tag">{item.tag}</span><span className="insight-number">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p><ArrowLink href={item.href}>Read note</ArrowLink></article>)}</div></section>
+      <section className="source-band section-shell"><div><span className="eyebrow">SOURCE-LED BY DESIGN</span><h2>Good guidance<br /><span>shows its work.</span></h2></div><div className="source-copy"><p>We anchor our recommendations in first-party documentation and clearly label the difference between a platform requirement, a tested practice, and an informed hypothesis.</p><a className="button button-light" href="/playbook#sources">See our sources <BookOpen size={17} /></a></div></section>
+      <section className="closing section-shell"><div className="closing-mark">S<span>/</span>G</div><div><h2>Build a signal<br />that lasts.</h2><p>Want the practical version? Start with the playbook, then take the thinking back to your own site.</p><a className="button button-primary" href="/playbook">Start reading <ArrowUpRight size={17} /></a></div></section>
+    </main><Footer />
+  </>;
+}
+
+function Playbook() {
+  return <><Meta title="The SEO / GEO Playbook — SEO / GEO Consulting" description="A practical framework for making expertise discoverable in search and quotable in AI answers." path="/playbook" /><Schema page="playbook" /><Header /><main className="playbook-page"><section className="playbook-hero section-shell"><div className="section-label">FIELD GUIDE / 01</div><h1>The SEO / GEO<br /><span>playbook.</span></h1><p>A practical framework for making expertise discoverable in search and quotable in AI answers.</p><div className="updated"><span className="pulse"></span> LAST UPDATED · SEPTEMBER 2026</div></section><section className="playbook-body section-shell"><aside><div className="toc-title">IN THIS GUIDE</div><a href="#entity">01 — Define the entity</a><a href="#intent">02 — Answer the intent</a><a href="#proof">03 — Prove the claim</a><a href="#measure">04 — Measure the mention</a><a href="#sources">Sources</a></aside><div className="guide-content"><p className="standfirst">Generative Engine Optimisation (GEO) is not a replacement for SEO. It is the practice of making your useful, trustworthy expertise easier for answer engines to retrieve, interpret, and cite.</p><GuideStep id="entity" number="01" title="Define the entity" lead="Before a page can rank for an idea, your site needs to make the underlying entity unambiguous."><p>Write the short version a new reader should remember: what your organisation is, where it operates, which problems it solves, and what makes its point of view credible. Repeat that truth consistently across your navigation, about page, profiles, and service pages.</p><div className="check-list"><div><Check size={17} />A clear organisation or person name</div><div><Check size={17} />A specific category and audience</div><div><Check size={17} />Consistent contact and location details</div></div></GuideStep><GuideStep id="intent" number="02" title="Answer the intent" lead="The page should answer the question before it asks the reader to do anything else."><p>Use the language of the problem, not only the language of your product. Put a concise answer near the top, then support it with definitions, comparisons, examples, and a next step. This is good UX for people and gives retrieval systems clean passages to work with.</p><div className="mini-table"><div><strong>Weak opening</strong><span>We are a leading provider of solutions.</span></div><div><strong>Useful opening</strong><span>SEO helps search engines understand your content; GEO extends that clarity to AI-generated answers.</span></div></div></GuideStep><GuideStep id="proof" number="03" title="Prove the claim" lead="Trust is not a tone of voice. It is a trail of evidence."><p>Make authorship, sources, methodology, and limitations visible. Link to primary references when you make a factual claim. Add first-hand details that could not have been produced by skimming the same ten results. When you update a page, explain what changed.</p><blockquote>“It is more important to supply fewer but complete and accurate recommended properties rather than trying to provide every possible recommended property with less complete, badly-formed, or inaccurate data.”<cite>— Google Search Central, Structured data markup</cite></blockquote></GuideStep><GuideStep id="measure" number="04" title="Measure the mention" lead="A position report is one lens. Build a measurement system that reflects how people actually discover you."><p>Track non-branded impressions, qualified organic sessions, assisted conversions, returning visitors, and the pages that become entry points. For AI visibility, watch citation and grounding-query reporting where the platform provides it. Treat those signals as directional evidence, not a new vanity metric.</p><div className="measure-grid"><div><strong>Discover</strong><span>Impressions · queries · crawl health</span></div><div><strong>Understand</strong><span>Engagement · return visits · scroll depth</span></div><div><strong>Act</strong><span>Leads · assisted conversion · retention</span></div></div></GuideStep><section className="sources" id="sources"><div className="section-label">REFERENCES</div><h2>Start with the<br /><span>primary source.</span></h2><p>These recommendations are designed to be useful without pretending that any platform guarantees a ranking or citation.</p>{sources.map(s => <a className="source-row" href={s.href} target="_blank" rel="noreferrer" key={s.n}><span>{s.n}</span><div><small>{s.label}</small><strong>{s.title}</strong></div><ExternalLink size={16} /></a>)}</section></div></section></main><Footer /></>;
+}
+
+function GuideStep({ id, number, title, lead, children }) { return <section className="guide-step" id={id}><div className="guide-number">{number}</div><div><h2>{title}</h2><p className="guide-lead">{lead}</p>{children}</div></section>; }
+
+function Footer() { return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>Practical thinking for the next search surface.</p></div><div className="footer-links"><div><small>EXPLORE</small><a href="/playbook">Playbook</a><a href="/#method">Method</a><a href="/#insights">Field notes</a></div><div><small>CONNECTED</small><a href="https://itehk.com.hk" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">Email us <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>Built for clarity, not noise.</span></div></footer> }
+
+function App() { return window.location.pathname === '/playbook' ? <Playbook /> : <Home />; }
+
+createRoot(document.getElementById('root')).render(<App />);
