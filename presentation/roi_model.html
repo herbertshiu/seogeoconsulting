@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Directional ROI Model</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 20px;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding-top: 40px;
+            padding-left: 80px;
+            padding-right: 80px;
+            flex-grow: 1;
+        }
+
+        .formula-box {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .formula-item {
+            border-top: 1px solid #0B1D3A;
+            padding-top: 15px;
+        }
+
+        .formula-item span {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #0B1D3A;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .formula-item p {
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .result-box {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .accent-circle {
+            width: 380px;
+            height: 380px;
+            background-color: #FFC300;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+            left: -40px;
+        }
+
+        .big-number-wrap {
+            position: relative;
+            z-index: 2;
+            padding-left: 40px;
+        }
+
+        .big-number {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 82px;
+            color: #0B1D3A;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .big-label {
+            font-size: 22px;
+            font-style: italic;
+            color: #3D4A5C;
+        }
+
+        .disclaimer {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #3D4A5C;
+            margin-top: auto;
+            padding-top: 40px;
+            padding-left: 80px;
+            padding-bottom: 40px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>A directional<br>ROI model.</h2>
+        </div>
+        <div class="roi-grid">
+            <div class="formula-box">
+                <div class="formula-item">
+                    <span>Illustrative Scenario</span>
+                    <p>5,000 monthly organic sessions<br>35% visibility lift</p>
+                </div>
+                <div class="formula-item">
+                    <span>Conversion & Value</span>
+                    <p>2.5% organic conversion rate<br>HK$1,800 average lead value</p>
+                </div>
+                <div class="formula-item">
+                    <span>The Calculation</span>
+                    <p>Sessions × Lift × Conversion × Value</p>
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="accent-circle"></div>
+                <div class="big-number-wrap">
+                    <div class="big-number">HK$78,750</div>
+                    <div class="big-label">Potential incremental monthly pipeline</div>
+                </div>
+            </div>
+        </div>
+        <div class="disclaimer">
+            *This is a planning model, not a forecast or guarantee. Use your own analytics to validate assumptions.
+        </div>
+    </div>
+</body>
+</html>

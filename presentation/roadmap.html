@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What to build next: 90-Day Roadmap</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-top: 60px;
+            padding-left: 80px;
+            padding-right: 80px;
+            flex-grow: 1;
+        }
+
+        .roadmap-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accent-square {
+            width: 60px;
+            height: 60px;
+            background-color: #FFC300;
+            margin-bottom: 30px;
+        }
+
+        .phase-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            color: #0B1D3A;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .phase-list {
+            list-style: none;
+        }
+
+        .phase-list li {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .phase-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #FFC300;
+            font-weight: 600;
+        }
+
+        .timeline-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #3D4A5C;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>What to build next.</h2>
+        </div>
+        <div class="roadmap-grid">
+            <div class="roadmap-column">
+                <div class="accent-square"></div>
+                <div class="timeline-label">DAYS 1–30</div>
+                <h3 class="phase-title">Foundation</h3>
+                <ul class="phase-list">
+                    <li>Consolidate entity language</li>
+                    <li>Establish technical baselines</li>
+                    <li>Audit indexability & canonicals</li>
+                    <li>Map priority intent pages</li>
+                </ul>
+            </div>
+            <div class="roadmap-column">
+                <div class="accent-square"></div>
+                <div class="timeline-label">DAYS 31–60</div>
+                <h3 class="phase-title">Implementation</h3>
+                <ul class="phase-list">
+                    <li>Publish evidence-led pages</li>
+                    <li>Strengthen internal link layer</li>
+                    <li>Deploy full structured data</li>
+                    <li>Create first proof-led case study</li>
+                </ul>
+            </div>
+            <div class="roadmap-column">
+                <div class="accent-square"></div>
+                <div class="timeline-label">DAYS 61–90</div>
+                <h3 class="phase-title">Iteration</h3>
+                <ul class="phase-list">
+                    <li>Review qualified organic demand</li>
+                    <li>Monitor citations & queries</li>
+                    <li>Audit content freshness</li>
+                    <li>Iterate from evidence loop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

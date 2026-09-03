@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measurement is the Compounding Loop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px; /* do not change */
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 20px;
+        }
+
+        .loop-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 20px; /* reduced to save height */
+            padding-bottom: 0;
+        }
+
+        .central-accent {
+            width: 320px; /* reduced from 420 */
+            height: 320px; /* reduced from 420 */
+            background-color: #FFC300;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px; /* reduced inner padding */
+            z-index: 1;
+        }
+
+        .central-accent h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 42px; /* keep font size unchanged */
+            line-height: 1;
+            color: #0B1D3A;
+            letter-spacing: -0.02em;
+        }
+
+        .loop-stage {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #0B1D3A;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .loop-stage span {
+            font-family: 'Libre+Baskerville', serif;
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: none;
+            letter-spacing: 0;
+            margin-top: 8px;
+            color: #3D4A5C;
+        }
+
+        /* Repositioned stages to match smaller center */
+        .stage-1 { top: 100px; left: 50%; transform: translateX(-50%); }
+        .stage-2 { top: 50%; right: 140px; transform: translateY(-50%); }
+        .stage-3 { bottom: 80px; right: 240px; }
+        .stage-4 { bottom: 80px; left: 240px; }
+        .stage-5 { top: 50%; left: 140px; transform: translateY(-50%); }
+
+        .summary-text {
+            padding-left: 80px;
+            padding-right: 80px;
+            padding-top: 24px; /* reduced */
+            font-size: 22px;
+            line-height: 1.5;
+            max-width: 1000px;
+            margin-bottom: 40px; /* reduced */
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Measurement is the<br>compounding loop.</h2>
+        </div>
+        
+        <div class="loop-container">
+            <div class="central-accent">
+                <h3>Compounding<br>Authority</h3>
+            </div>
+            
+            <div class="loop-stage stage-1">Discover<span>People find the signal</span></div>
+            <div class="loop-stage stage-2">Understand<span>Machines parse the entity</span></div>
+            <div class="loop-stage stage-3">Trust<span>Evidence proves the claim</span></div>
+            <div class="loop-stage stage-4">Act<span>Qualified leads convert</span></div>
+            <div class="loop-stage stage-5">Return<span>Citations build authority</span></div>
+        </div>
+
+        <div class="summary-text">
+            <p>The durable advantage is not a single ranking or a single citation. It is a system that keeps making the organisation easier to understand across people, crawlers, and answer engines.</p>
+        </div>
+    </div>
+</body>
+</html>

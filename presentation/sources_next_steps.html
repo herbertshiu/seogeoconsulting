@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sources and Next Steps</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 40px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding-top: 20px;
+            padding-left: 80px;
+            padding-right: 80px;
+            flex-grow: 1;
+        }
+
+        .sources-list h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #0B1D3A;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sources-list ul {
+            list-style: none;
+        }
+
+        .sources-list li {
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #FFC300;
+        }
+
+        .sources-list li strong {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0B1D3A;
+        }
+
+        .next-steps-box {
+            background-color: #0B1D3A;
+            padding-top: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+            color: #DDE2E5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .next-steps-box h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #FFC300;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-item {
+            margin-bottom: 40px;
+        }
+
+        .cta-item span {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .cta-link {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #DDE2E5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .cta-link i {
+            margin-left: 15px;
+            color: #FFC300;
+        }
+
+        .accent-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #FFC300;
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-circle"></div>
+        <div class="header-block">
+            <h2>Sources and<br>next steps.</h2>
+        </div>
+        <div class="content-grid">
+            <div class="sources-list">
+                <h3>Primary Documentation</h3>
+                <ul>
+                    <li>
+                        <strong>Google Search Central</strong>
+                        SEO Starter Guide & Structured Data Markup
+                    </li>
+                    <li>
+                        <strong>Google Search Central</strong>
+                        Core Web Vitals Thresholds
+                    </li>
+                    <li>
+                        <strong>Microsoft Bing</strong>
+                        AI Performance in Webmaster Tools
+                    </li>
+                    <li>
+                        <strong>OpenAI</strong>
+                        Overview of OpenAI Crawlers (GPTBot)
+                    </li>
+                </ul>
+            </div>
+            <div class="next-steps-box">
+                <h3>Take Action</h3>
+                <div class="cta-item">
+                    <span>Read the full framework</span>
+                    <div class="cta-link">seogeoconsulting.hk/playbook <i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cta-item">
+                    <span>Model your scenario</span>
+                    <div class="cta-link">seogeoconsulting.hk/#calculator <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

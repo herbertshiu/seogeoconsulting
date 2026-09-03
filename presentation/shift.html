@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Search Surface Has Expanded</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 40px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding-top: 40px;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+
+        .concept-box {
+            font-size: 24px;
+            line-height: 1.5;
+        }
+
+        .concept-box p {
+            margin-bottom: 30px;
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .square-accent {
+            width: 24px;
+            height: 24px;
+            background-color: #FFC300;
+            margin-right: 20px;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .strategy-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            color: #0B1D3A;
+            margin-bottom: 10px;
+        }
+
+        .strategy-content p {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>The search surface<br>has expanded.</h2>
+        </div>
+        <div class="grid-layout">
+            <div class="concept-box">
+                <p>Search still rewards pages people can find, understand, and trust.</p>
+                <p>Generative answer surfaces add a second requirement: useful passages need to be retrievable, attributable, and clear enough to cite.</p>
+            </div>
+            <div class="strategy-list">
+                <div class="strategy-item">
+                    <div class="square-accent"></div>
+                    <div class="strategy-content">
+                        <h3>Knowledge System over Links</h3>
+                        <p>Move from ranking individual pages to building a coherent, connected knowledge system.</p>
+                    </div>
+                </div>
+                <div class="strategy-item">
+                    <div class="square-accent"></div>
+                    <div class="strategy-content">
+                        <h3>Proof over Publishing</h3>
+                        <p>Move from publishing high-volume content to proving specific, authoritative claims.</p>
+                    </div>
+                </div>
+                <div class="strategy-item">
+                    <div class="square-accent"></div>
+                    <div class="strategy-content">
+                        <h3>Citation over Position</h3>
+                        <p>Move from position reporting to measuring qualified discovery and citation rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

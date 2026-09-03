@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proof Should Be Visible</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 40px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 60px;
+            padding-top: 20px;
+            padding-left: 80px;
+            padding-right: 80px;
+            flex-grow: 1;
+        }
+
+        .quote-block {
+            background-color: #FFC300;
+            padding-top: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .quote-block blockquote {
+            font-size: 28px;
+            line-height: 1.3;
+            font-style: italic;
+            color: #0B1D3A;
+            margin-bottom: 30px;
+        }
+
+        .quote-block cite {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+        }
+
+        .evidence-pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .pillar {
+            padding-top: 10px;
+        }
+
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .dot-accent {
+            width: 16px;
+            height: 16px;
+            background-color: #0B1D3A;
+            margin-right: 15px;
+        }
+
+        .pillar h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #0B1D3A;
+        }
+
+        .pillar p {
+            font-size: 18px;
+            line-height: 1.5;
+            padding-left: 31px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Proof should<br>be visible.</h2>
+        </div>
+        <div class="content-grid">
+            <div class="quote-block">
+                <blockquote>“Your digital marketing partner for seizing The Greater Bay Area business opportunities.”</blockquote>
+                <cite>— iTE Limited, public positioning</cite>
+            </div>
+            <div class="evidence-pillars">
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <div class="dot-accent"></div>
+                        <h3>Positioning</h3>
+                    </div>
+                    <p>First-party statements create an attributable point of view that AI engines can summarize and cite.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <div class="dot-accent"></div>
+                        <h3>Service Detail</h3>
+                    </div>
+                    <p>Public proof supports the relationship between strategy, media, SEO, and technology offerings.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <div class="dot-accent"></div>
+                        <h3>Entity Legibility</h3>
+                    </div>
+                    <p>Contact and location details anchor the organisation as a verifiable local entity in the Hong Kong market.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <div class="dot-accent"></div>
+                        <h3>Source Links</h3>
+                    </div>
+                    <p>Descriptive anchors and external links connect the narrative directly to the client's source of truth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

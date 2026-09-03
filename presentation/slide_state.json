@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "title": "Build a signal that lasts",
+    "created": 1788426307.644,
+    "last_updated": 1788426433.657,
+    "total_slides": 10
+  },
+  "slides": [
+    {
+      "id": "title",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "shift",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "method",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "case_study_ite",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "evidence_layer",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "benchmarks",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "roi_model",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "roadmap",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "compounding_loop",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "sources_next_steps",
+      "state": "edited",
+      "pageNum": 10
+    }
+  ],
+  "outline": [
+    {
+      "id": "title",
+      "title": "Build a signal that lasts",
+      "summary": "Title slide introducing the SEO / GEO authority building strategy and seogeoconsulting.hk.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "shift",
+      "title": "The search surface has expanded",
+      "summary": "Explains the strategic shift from ranking pages to building a coherent knowledge system retrievable by AI engines.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "method",
+      "title": "The four-move authority system",
+      "summary": "Details the core methodology: Define the entity, Answer the intent, Prove the claim, and Measure the mention.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "case_study_ite",
+      "title": "Case study: iTE Limited",
+      "summary": "Analysis of iTE Limited's GBA digital offering and the authority pattern used to clarify their multidisciplinary services.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "evidence_layer",
+      "title": "Proof should be visible",
+      "summary": "Explains the case study evidence layer: positioning, service detail, entity legibility, and source links.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "benchmarks",
+      "title": "Benchmarks: experience + retrieval",
+      "summary": "Presents the authority benchmark table covering Core Web Vitals and AI visibility signals from Google and Microsoft.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "roi_model",
+      "title": "A directional ROI model",
+      "summary": "Details the ROI calculation model and an illustrative scenario for visibility lift and pipeline growth.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "roadmap",
+      "title": "What to build next",
+      "summary": "A 90-day roadmap for establishing an authority operating rhythm from foundation to iteration.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "compounding_loop",
+      "title": "Measurement is the compounding loop",
+      "summary": "Explains the long-term advantage of a system that is easy for people, crawlers, and answer engines to understand.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "sources_next_steps",
+      "title": "Sources and next steps",
+      "summary": "Lists primary documentation sources and provides direct links to the playbook and ROI calculator.",
+      "image_plan": "Use a suitable image if needed"
+    }
+  ]
+}

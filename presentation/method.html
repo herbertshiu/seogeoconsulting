@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Four-Move Authority System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 20px;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 40px;
+            padding-top: 40px;
+            padding-left: 80px;
+            padding-right: 80px;
+            flex-grow: 1;
+        }
+
+        .method-item {
+            position: relative;
+            padding-top: 20px;
+        }
+
+        .number-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .accent-circle {
+            width: 80px;
+            height: 80px;
+            background-color: #FFC300;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .big-number {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 48px;
+            color: #0B1D3A;
+            position: relative;
+            z-index: 2;
+        }
+
+        .method-content {
+            padding-left: 100px;
+        }
+
+        .method-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            color: #0B1D3A;
+            margin-bottom: 10px;
+        }
+
+        .method-content p {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>The four-move<br>authority system.</h2>
+        </div>
+        <div class="method-grid">
+            <div class="method-item">
+                <div class="number-accent">
+                    <div class="accent-circle"></div>
+                    <span class="big-number">01</span>
+                </div>
+                <div class="method-content">
+                    <h3>Define the entity</h3>
+                    <p>Make the organisation, audience, geography, offer, and point of view unambiguous for both people and machines.</p>
+                </div>
+            </div>
+            <div class="method-item">
+                <div class="number-accent">
+                    <div class="accent-circle"></div>
+                    <span class="big-number">02</span>
+                </div>
+                <div class="method-content">
+                    <h3>Answer the intent</h3>
+                    <p>Lead with a direct answer to real questions, then support it with context, examples, and logical next steps.</p>
+                </div>
+            </div>
+            <div class="method-item">
+                <div class="number-accent">
+                    <div class="accent-circle"></div>
+                    <span class="big-number">03</span>
+                </div>
+                <div class="method-content">
+                    <h3>Prove the claim</h3>
+                    <p>Use first-hand observations, methodology, citations, and outcomes to give readers and engines something to trust.</p>
+                </div>
+            </div>
+            <div class="method-item">
+                <div class="number-accent">
+                    <div class="accent-circle"></div>
+                    <span class="big-number">04</span>
+                </div>
+                <div class="method-content">
+                    <h3>Measure the mention</h3>
+                    <p>Look beyond rank. Track qualified discovery, branded demand, and the pages or queries that earn AI citations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

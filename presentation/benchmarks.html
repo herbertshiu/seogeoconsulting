@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benchmarks: Experience + Retrieval</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #DDE2E5;
+            color: #3D4A5C;
+            font-family: 'Libre+Baskerville', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-block {
+            padding-top: 60px;
+            padding-left: 80px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: #0B1D3A;
+            margin-bottom: 40px;
+        }
+
+        .table-container {
+            padding-top: 20px;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+
+        .benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .table-header {
+            border-bottom: 2px solid #0B1D3A;
+            text-align: left;
+        }
+
+        .table-header th {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #0B1D3A;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .table-row {
+            border-bottom: 1px solid rgba(61, 74, 92, 0.2);
+        }
+
+        .table-row td {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 18px;
+            vertical-align: top;
+        }
+
+        .signal-name {
+            font-weight: 600;
+            color: #0B1D3A;
+            width: 250px;
+        }
+
+        .reference-val {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #FFC300;
+            background-color: #0B1D3A;
+            padding: 4px 12px;
+            display: inline-block;
+            width: 160px;
+            text-align: center;
+        }
+
+        .strategic-use {
+            font-family: 'Libre+Baskerville', serif;
+            font-style: italic;
+        }
+
+        .source-footer {
+            margin-top: auto;
+            padding-top: 40px;
+            padding-left: 80px;
+            padding-right: 80px;
+            font-size: 14px;
+            color: #3D4A5C;
+            display: flex;
+            gap: 40px;
+        }
+
+        .source-footer strong {
+            color: #0B1D3A;
+        }
+
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 200px;
+            width: 10px;
+            height: 400px;
+            background-color: #FFC300;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-bar"></div>
+        <div class="header-block">
+            <h2>Benchmarks:<br>experience + retrieval.</h2>
+        </div>
+        <div class="table-container">
+            <table class="benchmark-table">
+                <thead>
+                    <tr class="table-header">
+                        <th>Signal</th>
+                        <th>Reference</th>
+                        <th>Strategic Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row">
+                        <td class="signal-name">LCP (Loading)</td>
+                        <td><span class="reference-val">≤ 2.5 sec</span></td>
+                        <td class="strategic-use">Core Web Vitals loading performance baseline.</td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="signal-name">INP (Response)</td>
+                        <td><span class="reference-val">&lt; 200 ms</span></td>
+                        <td class="strategic-use">Interaction responsiveness baseline.</td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="signal-name">CLS (Stability)</td>
+                        <td><span class="reference-val">&lt; 0.1</span></td>
+                        <td class="strategic-use">Visual stability and layout shift baseline.</td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="signal-name">AI Citations</td>
+                        <td><span class="reference-val">Baseline</span></td>
+                        <td class="strategic-use">Track how often pages are cited in AI answers.</td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="signal-name">Grounding Queries</td>
+                        <td><span class="reference-val">Recurring</span></td>
+                        <td class="strategic-use">Identify queries that retrieve your content.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="source-footer">
+            <p><strong>Sources:</strong> Google Search Central (Core Web Vitals)</p>
+            <p><strong>Sources:</strong> Microsoft Bing (AI Performance Guidance)</p>
+        </div>
+    </div>
+</body>
+</html>
