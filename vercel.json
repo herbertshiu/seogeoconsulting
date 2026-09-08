@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "seogeoconsulting.hk" }],
       "destination": "https://www.seogeoconsulting.hk/:path*",
       "permanent": true
+    },
+    {
+      "source": "/playbook.html",
+      "destination": "/playbook",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -13,7 +18,7 @@
       "destination": "/playbook.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/:path([^/.]+)",
       "destination": "/index.html"
     }
   ]
