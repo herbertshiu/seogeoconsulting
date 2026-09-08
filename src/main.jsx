@@ -135,6 +135,9 @@ function GuideStep({ id, number, title, lead, children }) { return <section clas
 
 function Footer() { return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>Practical thinking for the next search surface.</p></div><div className="footer-links"><div><small>EXPLORE</small><a href="/playbook">Playbook</a><a href="/#method">Method</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a></div><div><small>CONNECTED</small><a href="https://itehk.com.hk" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">Email us <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>Built for clarity, not noise.</span></div></footer> }
 
-function App() { return window.location.pathname === '/playbook' ? <Playbook /> : <Home />; }
+function App() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  return path === '/playbook' || path === '/playbook.html' ? <Playbook /> : <Home />;
+}
 
 createRoot(document.getElementById('root')).render(<App />);

@@ -1,5 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "seogeoconsulting.hk" }],
+      "destination": "https://www.seogeoconsulting.hk/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/playbook",
+      "destination": "/playbook.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
