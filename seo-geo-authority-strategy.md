@@ -103,5 +103,5 @@ The durable advantage is not a single ranking or a single citation. It is a syst
 
 Start with the live playbook and use the ROI calculator to model your own baseline.
 
-https://seogeoconsulting.hk/playbook
-https://seogeoconsulting.hk/#calculator
+https://www.www.seogeoconsulting.hk/playbook
+https://www.www.seogeoconsulting.hk/#calculator

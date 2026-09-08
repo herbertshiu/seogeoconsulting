@@ -37,10 +37,10 @@ function Meta({ title, description, path = '' }) {
     set('og:title', title, true);
     set('og:description', description, true);
     set('og:type', 'website', true);
-    set('og:url', `https://seogeoconsulting.hk${path}`, true);
+    set('og:url', `https://www.seogeoconsulting.hk${path}`, true);
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.setAttribute('rel', 'canonical'); document.head.appendChild(canonical); }
-    canonical.setAttribute('href', `https://seogeoconsulting.hk${path}`);
+    canonical.setAttribute('href', `https://www.seogeoconsulting.hk${path}`);
   }, [title, description, path]);
   return null;
 }
@@ -48,12 +48,12 @@ function Meta({ title, description, path = '' }) {
 function Schema({ page = 'home' }) {
   useEffect(() => {
     const data = page === 'playbook' ? {
-      '@context': 'https://schema.org', '@type': 'Article', headline: 'The SEO / GEO Playbook', description: 'A practical system for making expertise discoverable in search and AI answers.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, mainEntityOfPage: 'https://seogeoconsulting.hk/playbook'
+      '@context': 'https://schema.org', '@type': 'Article', headline: 'The SEO / GEO Playbook', description: 'A practical system for making expertise discoverable in search and AI answers.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, mainEntityOfPage: 'https://www.seogeoconsulting.hk/playbook'
     } : {
       '@context': 'https://schema.org', '@graph': [
-        { '@type': 'WebSite', '@id': 'https://seogeoconsulting.hk/#website', name: 'SEO / GEO Consulting', url: 'https://seogeoconsulting.hk', description: 'Practical SEO and generative engine optimization guidance for ambitious teams.', potentialAction: { '@type': 'SearchAction', target: 'https://seogeoconsulting.hk/?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
-        { '@type': 'Article', '@id': 'https://seogeoconsulting.hk/#case-study', headline: 'Case study: making a multidisciplinary GBA agency easier to understand', description: 'A public-source case study showing how entity clarity, offer architecture, and evidence help a regional digital partner become easier to understand.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, dateModified: '2026-09-03', mainEntityOfPage: 'https://seogeoconsulting.hk/#case-study', about: { '@type': 'Organization', name: 'iTE Limited', url: 'https://itehk.com.hk' }, citation: ['https://itehk.com.hk/', 'https://itehk.com.hk/service/it-solutions'] },
-        { '@type': 'Dataset', '@id': 'https://seogeoconsulting.hk/#authority-benchmarks', name: 'SEO and GEO authority benchmarks', description: 'Reference thresholds and measurement definitions used in the SEO / GEO Consulting case study.', url: 'https://seogeoconsulting.hk/#case-study', creator: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, license: 'https://creativecommons.org/licenses/by/4.0/', variableMeasured: [
+        { '@type': 'WebSite', '@id': 'https://www.seogeoconsulting.hk/#website', name: 'SEO / GEO Consulting', url: 'https://www.seogeoconsulting.hk', description: 'Practical SEO and generative engine optimization guidance for ambitious teams.', potentialAction: { '@type': 'SearchAction', target: 'https://www.seogeoconsulting.hk/?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
+        { '@type': 'Article', '@id': 'https://www.seogeoconsulting.hk/#case-study', headline: 'Case study: making a multidisciplinary GBA agency easier to understand', description: 'A public-source case study showing how entity clarity, offer architecture, and evidence help a regional digital partner become easier to understand.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, dateModified: '2026-09-03', mainEntityOfPage: 'https://www.seogeoconsulting.hk/#case-study', about: { '@type': 'Organization', name: 'iTE Limited', url: 'https://itehk.com.hk' }, citation: ['https://itehk.com.hk/', 'https://itehk.com.hk/service/it-solutions'] },
+        { '@type': 'Dataset', '@id': 'https://www.seogeoconsulting.hk/#authority-benchmarks', name: 'SEO and GEO authority benchmarks', description: 'Reference thresholds and measurement definitions used in the SEO / GEO Consulting case study.', url: 'https://www.seogeoconsulting.hk/#case-study', creator: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, license: 'https://creativecommons.org/licenses/by/4.0/', variableMeasured: [
           { '@type': 'PropertyValue', name: 'Largest Contentful Paint', value: '≤ 2.5 seconds', measurementMethod: 'Google Search Central Core Web Vitals' },
           { '@type': 'PropertyValue', name: 'Interaction to Next Paint', value: '< 200 milliseconds', measurementMethod: 'Google Search Central Core Web Vitals' },
           { '@type': 'PropertyValue', name: 'Cumulative Layout Shift', value: '< 0.1', measurementMethod: 'Google Search Central Core Web Vitals' },

@@ -5,4 +5,4 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://seogeoconsulting.hk/sitemap.xml
+Sitemap: https://www.seogeoconsulting.hk/sitemap.xml
