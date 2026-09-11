@@ -10,12 +10,21 @@
       "source": "/playbook.html",
       "destination": "/playbook",
       "permanent": true
+    },
+    {
+      "source": "/authority.html",
+      "destination": "/authority",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
       "source": "/playbook",
       "destination": "/playbook.html"
+    },
+    {
+      "source": "/authority",
+      "destination": "/authority.html"
     },
     {
       "source": "/:path([^/.]+)",

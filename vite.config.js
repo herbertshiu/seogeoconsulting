@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         playbook: resolve(import.meta.dirname, 'playbook.html'),
+        authority: resolve(import.meta.dirname, 'authority.html'),
       },
     },
   },

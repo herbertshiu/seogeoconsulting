@@ -19,9 +19,9 @@ const benchmarks = [
 ];
 
 const insights = [
-  { tag: 'FOUNDATION', title: 'The search surface is now a conversation', text: 'Classic rankings still matter. But the new question is whether your brand is clear enough to be selected, summarized, and cited in an answer.', href: '#insights' },
-  { tag: 'STRUCTURE', title: 'Build an evidence layer, not a content pile', text: 'The most useful SEO program connects entities, proof, first-hand experience, and internal links into one navigable knowledge system.', href: '#insights' },
-  { tag: 'MEASUREMENT', title: 'Visibility is bigger than a position number', text: 'Track the full journey: impressions, qualified visits, branded demand, assisted conversions, and the pages that earn citations.', href: '#insights' },
+  { tag: 'FOUNDATION', title: 'The search surface is now a conversation', text: 'Classic rankings still matter. But the new question is whether your brand is clear enough to be selected, summarized, and cited in an answer.', href: '/playbook' },
+  { tag: 'STRUCTURE', title: 'Build an evidence layer, not a content pile', text: 'The most useful SEO program connects entities, proof, first-hand experience, and internal links into one navigable knowledge system.', href: '/playbook#proof' },
+  { tag: 'MEASUREMENT', title: 'Visibility is bigger than a position number', text: 'Track the full journey: impressions, qualified visits, branded demand, assisted conversions, and the pages that earn citations.', href: '/authority' },
 ];
 
 function Meta({ title, description, path = '' }) {
@@ -36,7 +36,7 @@ function Meta({ title, description, path = '' }) {
     set('description', description);
     set('og:title', title, true);
     set('og:description', description, true);
-    set('og:type', path === '/playbook' ? 'article' : 'website', true);
+    set('og:type', path === '/playbook' || path === '/authority' ? 'article' : 'website', true);
     set('og:url', `https://www.seogeoconsulting.hk${path}`, true);
     set('og:image', 'https://www.seogeoconsulting.hk/og.png', true);
     set('twitter:card', 'summary_large_image');
@@ -52,21 +52,67 @@ function Meta({ title, description, path = '' }) {
 
 function Schema({ page = 'home' }) {
   useEffect(() => {
-    const data = page === 'playbook' ? {
-      '@context': 'https://schema.org', '@type': 'Article', headline: 'The SEO / GEO Playbook', description: 'A practical system for making expertise discoverable in search and AI answers.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, mainEntityOfPage: 'https://www.seogeoconsulting.hk/playbook'
-    } : {
-      '@context': 'https://schema.org', '@graph': [
-        { '@type': 'WebSite', '@id': 'https://www.seogeoconsulting.hk/#website', name: 'SEO / GEO Consulting', url: 'https://www.seogeoconsulting.hk', description: 'Practical SEO and generative engine optimization guidance for ambitious teams.', potentialAction: { '@type': 'SearchAction', target: 'https://www.seogeoconsulting.hk/?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
-        { '@type': 'Article', '@id': 'https://www.seogeoconsulting.hk/#case-study', headline: 'Case study: making a multidisciplinary GBA agency easier to understand', description: 'A public-source case study showing how entity clarity, offer architecture, and evidence help a regional digital partner become easier to understand.', author: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, publisher: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, dateModified: '2026-09-03', mainEntityOfPage: 'https://www.seogeoconsulting.hk/#case-study', about: { '@type': 'Organization', name: 'iTE Limited', url: 'https://itehk.com.hk' }, citation: ['https://itehk.com.hk/', 'https://itehk.com.hk/service/it-solutions'] },
-        { '@type': 'Dataset', '@id': 'https://www.seogeoconsulting.hk/#authority-benchmarks', name: 'SEO and GEO authority benchmarks', description: 'Reference thresholds and measurement definitions used in the SEO / GEO Consulting case study.', url: 'https://www.seogeoconsulting.hk/#case-study', creator: { '@type': 'Organization', name: 'SEO / GEO Consulting' }, license: 'https://creativecommons.org/licenses/by/4.0/', variableMeasured: [
-          { '@type': 'PropertyValue', name: 'Largest Contentful Paint', value: '≤ 2.5 seconds', measurementMethod: 'Google Search Central Core Web Vitals' },
-          { '@type': 'PropertyValue', name: 'Interaction to Next Paint', value: '< 200 milliseconds', measurementMethod: 'Google Search Central Core Web Vitals' },
-          { '@type': 'PropertyValue', name: 'Cumulative Layout Shift', value: '< 0.1', measurementMethod: 'Google Search Central Core Web Vitals' },
-          { '@type': 'PropertyValue', name: 'AI citations', value: 'Establish a baseline', measurementMethod: 'Microsoft Bing AI Performance' },
-          { '@type': 'PropertyValue', name: 'Grounding queries', value: 'Track recurring phrases', measurementMethod: 'Microsoft Bing AI Performance' }
-        ] }
-      ]
+    const org = {
+      '@type': 'Organization',
+      '@id': 'https://www.seogeoconsulting.hk/#organization',
+      name: 'SEO / GEO Consulting',
+      url: 'https://www.seogeoconsulting.hk/',
+      email: 'hello@seogeoconsulting.hk',
+      areaServed: ['Hong Kong', 'Greater Bay Area'],
+      sameAs: [
+        'https://itehk.com.hk/',
+        'https://www.seogeoworks.hk/',
+        'https://www.mysearchvisibility.hk/',
+        'https://www.myseogeoexperts.hk/',
+        'https://www.myairanking.hk/',
+        'https://hk.linkedin.com/company/ite-limited',
+        'https://www.facebook.com/itehk.ltd/',
+      ],
     };
+    let data;
+    if (page === 'playbook') {
+      data = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'The SEO / GEO Playbook',
+        description: 'A practical system for making expertise discoverable in search and AI answers.',
+        author: org,
+        publisher: org,
+        mainEntityOfPage: 'https://www.seogeoconsulting.hk/playbook',
+        image: 'https://www.seogeoconsulting.hk/og.png',
+        inLanguage: 'en-HK',
+      };
+    } else if (page === 'authority') {
+      data = {
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: 'Authority Scorecard for SEO and GEO',
+        description: 'A practical checklist for measuring whether a brand is easy to find, understand, and cite in search and AI answers.',
+        author: org,
+        publisher: org,
+        mainEntityOfPage: 'https://www.seogeoconsulting.hk/authority',
+        image: 'https://www.seogeoconsulting.hk/og.png',
+        inLanguage: 'en-HK',
+        about: ['SEO', 'Generative engine optimization', 'Search visibility', 'Hong Kong'],
+      };
+    } else {
+      data = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'WebSite', '@id': 'https://www.seogeoconsulting.hk/#website', name: 'SEO / GEO Consulting', url: 'https://www.seogeoconsulting.hk', description: 'Practical SEO and generative engine optimization guidance for ambitious teams.', publisher: { '@id': 'https://www.seogeoconsulting.hk/#organization' }, potentialAction: { '@type': 'SearchAction', target: 'https://www.seogeoconsulting.hk/?q={search_term_string}', 'query-input': 'required name=search_term_string' } },
+          org,
+          { '@type': 'ProfessionalService', '@id': 'https://www.seogeoconsulting.hk/#service', name: 'SEO / GEO Consulting', url: 'https://www.seogeoconsulting.hk/', provider: { '@id': 'https://www.seogeoconsulting.hk/#organization' }, areaServed: ['Hong Kong', 'Greater Bay Area'], serviceType: ['SEO', 'Generative engine optimization'] },
+          { '@type': 'Article', '@id': 'https://www.seogeoconsulting.hk/#case-study', headline: 'Case study: making a multidisciplinary GBA agency easier to understand', description: 'A public-source case study showing how entity clarity, offer architecture, and evidence help a regional digital partner become easier to understand.', author: { '@id': 'https://www.seogeoconsulting.hk/#organization' }, publisher: { '@id': 'https://www.seogeoconsulting.hk/#organization' }, dateModified: '2026-09-03', mainEntityOfPage: 'https://www.seogeoconsulting.hk/#case-study', about: { '@type': 'Organization', name: 'iTE Limited', url: 'https://itehk.com.hk' }, citation: ['https://itehk.com.hk/', 'https://itehk.com.hk/service/it-solutions'] },
+          { '@type': 'Dataset', '@id': 'https://www.seogeoconsulting.hk/#authority-benchmarks', name: 'SEO and GEO authority benchmarks', description: 'Reference thresholds and measurement definitions used in the SEO / GEO Consulting case study.', url: 'https://www.seogeoconsulting.hk/authority', creator: { '@id': 'https://www.seogeoconsulting.hk/#organization' }, license: 'https://creativecommons.org/licenses/by/4.0/', variableMeasured: [
+            { '@type': 'PropertyValue', name: 'Largest Contentful Paint', value: '≤ 2.5 seconds', measurementMethod: 'Google Search Central Core Web Vitals' },
+            { '@type': 'PropertyValue', name: 'Interaction to Next Paint', value: '< 200 milliseconds', measurementMethod: 'Google Search Central Core Web Vitals' },
+            { '@type': 'PropertyValue', name: 'Cumulative Layout Shift', value: '< 0.1', measurementMethod: 'Google Search Central Core Web Vitals' },
+            { '@type': 'PropertyValue', name: 'AI citations', value: 'Establish a baseline', measurementMethod: 'Microsoft Bing AI Performance' },
+            { '@type': 'PropertyValue', name: 'Grounding queries', value: 'Track recurring phrases', measurementMethod: 'Microsoft Bing AI Performance' }
+          ] }
+        ]
+      };
+    }
     let script = document.getElementById('structured-data');
     if (!script) { script = document.createElement('script'); script.id = 'structured-data'; script.type = 'application/ld+json'; document.head.appendChild(script); }
     script.textContent = JSON.stringify(data);
@@ -79,7 +125,7 @@ function Header() {
   return <header className="site-header"><div className="nav-wrap">
     <a className="brand" href="/" aria-label="SEO / GEO Consulting home"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a>
     <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">
-      <a href="/#method">Method</a><a href="/playbook">Playbook</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a><a href="/#about">About</a>
+      <a href="/#method">Method</a><a href="/playbook">Playbook</a><a href="/authority">Authority</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a><a href="/#about">About</a>
       <a className="nav-cta" href="https://itehk.com.hk" target="_blank" rel="noreferrer">Visit itehk.com.hk <ArrowUpRight size={16} /></a>
     </nav>
     <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button>
@@ -127,7 +173,7 @@ function Home() {
       <RoiCalculator />
       <AuditRequest />
       <section className="source-band section-shell"><div><span className="eyebrow">SOURCE-LED BY DESIGN</span><h2>Good guidance<br /><span>shows its work.</span></h2></div><div className="source-copy"><p>We anchor our recommendations in first-party documentation and clearly label the difference between a platform requirement, a tested practice, and an informed hypothesis.</p><a className="button button-light" href="/playbook#sources">See our sources <BookOpen size={17} /></a></div></section>
-      <section className="closing section-shell"><div className="closing-mark">S<span>/</span>G</div><div><h2>Build a signal<br />that lasts.</h2><p>Want the practical version? Start with the playbook, then take the thinking back to your own site.</p><a className="button button-primary" href="/playbook">Start reading <ArrowUpRight size={17} /></a></div></section>
+      <section className="closing section-shell"><div className="closing-mark">S<span>/</span>G</div><div><h2>Build a signal<br />that lasts.</h2><p>Want the practical version? Start with the playbook, then score your site with the authority checklist.</p><div className="hero-actions"><a className="button button-primary" href="/playbook">Start reading <ArrowUpRight size={17} /></a><a className="text-link" href="/authority">Authority scorecard <ChevronRight size={16} /></a></div></div></section>
     </main><Footer />
   </>;
 }
@@ -136,13 +182,27 @@ function Playbook() {
   return <><Meta title="The SEO / GEO Playbook — SEO / GEO Consulting" description="A practical framework for making expertise discoverable in search and quotable in AI answers. Learn entity clarity, intent answers, proof, and measurement." path="/playbook" /><Schema page="playbook" /><Header /><main className="playbook-page"><section className="playbook-hero section-shell"><div className="section-label">FIELD GUIDE / 01</div><h1>The SEO / GEO<br /><span>playbook.</span></h1><p>A practical framework for making expertise discoverable in search and quotable in AI answers.</p><div className="updated"><span className="pulse"></span> LAST UPDATED · SEPTEMBER 2026</div></section><section className="playbook-body section-shell"><aside><div className="toc-title">IN THIS GUIDE</div><a href="#entity">01 — Define the entity</a><a href="#intent">02 — Answer the intent</a><a href="#proof">03 — Prove the claim</a><a href="#measure">04 — Measure the mention</a><a href="#sources">Sources</a></aside><div className="guide-content"><p className="standfirst">Generative Engine Optimisation (GEO) is not a replacement for SEO. It is the practice of making your useful, trustworthy expertise easier for answer engines to retrieve, interpret, and cite.</p><GuideStep id="entity" number="01" title="Define the entity" lead="Before a page can rank for an idea, your site needs to make the underlying entity unambiguous."><p>Write the short version a new reader should remember: what your organisation is, where it operates, which problems it solves, and what makes its point of view credible. Repeat that truth consistently across your navigation, about page, profiles, and service pages.</p><div className="check-list"><div><Check size={17} />A clear organisation or person name</div><div><Check size={17} />A specific category and audience</div><div><Check size={17} />Consistent contact and location details</div></div></GuideStep><GuideStep id="intent" number="02" title="Answer the intent" lead="The page should answer the question before it asks the reader to do anything else."><p>Use the language of the problem, not only the language of your product. Put a concise answer near the top, then support it with definitions, comparisons, examples, and a next step. This is good UX for people and gives retrieval systems clean passages to work with.</p><div className="mini-table"><div><strong>Weak opening</strong><span>We are a leading provider of solutions.</span></div><div><strong>Useful opening</strong><span>SEO helps search engines understand your content; GEO extends that clarity to AI-generated answers.</span></div></div></GuideStep><GuideStep id="proof" number="03" title="Prove the claim" lead="Trust is not a tone of voice. It is a trail of evidence."><p>Make authorship, sources, methodology, and limitations visible. Link to primary references when you make a factual claim. Add first-hand details that could not have been produced by skimming the same ten results. When you update a page, explain what changed.</p><blockquote>“It is more important to supply fewer but complete and accurate recommended properties rather than trying to provide every possible recommended property with less complete, badly-formed, or inaccurate data.”<cite>— Google Search Central, Structured data markup</cite></blockquote></GuideStep><GuideStep id="measure" number="04" title="Measure the mention" lead="A position report is one lens. Build a measurement system that reflects how people actually discover you."><p>Track non-branded impressions, qualified organic sessions, assisted conversions, returning visitors, and the pages that become entry points. For AI visibility, watch citation and grounding-query reporting where the platform provides it. Treat those signals as directional evidence, not a new vanity metric.</p><div className="measure-grid"><div><strong>Discover</strong><span>Impressions · queries · crawl health</span></div><div><strong>Understand</strong><span>Engagement · return visits · scroll depth</span></div><div><strong>Act</strong><span>Leads · assisted conversion · retention</span></div></div></GuideStep><section className="sources" id="sources"><div className="section-label">REFERENCES</div><h2>Start with the<br /><span>primary source.</span></h2><p>These recommendations are designed to be useful without pretending that any platform guarantees a ranking or citation.</p>{sources.map(s => <a className="source-row" href={s.href} target="_blank" rel="noreferrer" key={s.n}><span>{s.n}</span><div><small>{s.label}</small><strong>{s.title}</strong></div><ExternalLink size={16} /></a>)}</section></div></section></main><Footer /></>;
 }
 
+
+function Authority() {
+  const pillars = [
+    { id: 'entity', n: '01', title: 'Entity clarity', lead: 'Can a stranger name who you are, where you operate, and what category you belong to in one sentence?', checks: ['Consistent organisation name across site and profiles', 'Clear category and audience on the homepage', 'Contact, location, and language signals that match reality'] },
+    { id: 'intent', n: '02', title: 'Intent coverage', lead: 'Do your key pages answer the real questions people ask before they ask for a demo?', checks: ['Direct answer near the top of priority pages', 'Comparisons, definitions, and next steps in plain language', 'Internal links that connect related intents'] },
+    { id: 'proof', n: '03', title: 'Proof density', lead: 'Is there evidence a third party could cite without guessing?', checks: ['Named sources or methodology on factual claims', 'First-hand detail that is hard to invent from SERPs alone', 'Visible authorship, dates, and update notes'] },
+    { id: 'health', n: '04', title: 'Crawl and experience health', lead: 'Can systems retrieve the page and can people stay long enough to trust it?', checks: ['Indexable URLs with a clean sitemap', 'Core Web Vitals within published thresholds', 'No soft-404s, broken assets, or orphan pages'] },
+    { id: 'citation', n: '05', title: 'Citation readiness', lead: 'Would another site or an answer engine have a reason to mention you?', checks: ['A citeable page with a stable URL and clear title', 'Shareable summaries others can quote accurately', 'Outbound references that make your work look researched'] },
+  ];
+  return <><Meta title="Authority Scorecard — SEO / GEO Consulting" description="A practical SEO and GEO authority scorecard for Hong Kong teams: entity clarity, intent answers, proof density, crawl health, and citation readiness in one citeable checklist." path="/authority" /><Schema page="authority" /><Header /><main className="playbook-page"><section className="playbook-hero section-shell"><div className="section-label">FIELD GUIDE / 02</div><h1>Authority<br /><span>scorecard.</span></h1><p>Domain rating follows referring domains. Earn them by becoming clearer, more useful, and easier to cite — then ask partners to link the pages that deserve it.</p><div className="updated"><span className="pulse"></span> LAST UPDATED · SEPTEMBER 2026</div></section><section className="playbook-body section-shell"><aside><div className="toc-title">SCORE THESE</div>{pillars.map(p => <a href={`#${p.id}`} key={p.id}>{p.n} — {p.title}</a>)}<a href="#use">How to use this</a><a href="/playbook">Playbook</a></aside><div className="guide-content"><p className="standfirst">Ahrefs Domain Rating is a backlink metric. On-page work does not raise DR by itself — but citeable assets and clear entity signals make it easier for other sites (including your own network) to link you with confidence.</p>{pillars.map(p => <GuideStep id={p.id} number={p.n} title={p.title} lead={p.lead} key={p.id}><div className="check-list">{p.checks.map(c => <div key={c}><Check size={17} />{c}</div>)}</div></GuideStep>)}<section className="sources" id="use"><div className="section-label">PRACTICE</div><h2>How to use<br /><span>the scorecard.</span></h2><p>Score each pillar from 0–2 (missing, partial, solid). Prioritise anything below 2 before you invest in outreach. When a pillar is solid, point partners to this page or the <a className="arrow-link" href="/playbook" style={{display:'inline-flex'}}>playbook</a> as the destination URL — not only the homepage.</p><div className="measure-grid"><div><strong>Link targets</strong><span>Homepage · Playbook · Authority scorecard</span></div><div><strong>Network</strong><span>Owned sites · partners · press · directories</span></div><div><strong>Measure</strong><span>Referring domains · branded queries · citations</span></div></div><a className="button button-primary" href="/#contact" style={{marginTop:'28px'}}>Request an audit <ArrowUpRight size={17} /></a></section></div></section></main><Footer /></>;
+}
+
 function GuideStep({ id, number, title, lead, children }) { return <section className="guide-step" id={id}><div className="guide-number">{number}</div><div><h2>{title}</h2><p className="guide-lead">{lead}</p>{children}</div></section>; }
 
-function Footer() { return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>Practical thinking for the next search surface.</p></div><div className="footer-links"><div><small>EXPLORE</small><a href="/playbook">Playbook</a><a href="/#method">Method</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a></div><div><small>CONNECTED</small><a href="https://itehk.com.hk" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">Email us <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>Built for clarity, not noise.</span></div></footer> }
+function Footer() { return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>Practical thinking for the next search surface.</p></div><div className="footer-links"><div><small>EXPLORE</small><a href="/playbook">Playbook</a><a href="/authority">Authority scorecard</a><a href="/#method">Method</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a></div><div><small>NETWORK</small><a href="https://itehk.com.hk/" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="https://www.seogeoworks.hk/" target="_blank" rel="noreferrer">seogeoworks.hk <ArrowUpRight size={13} /></a><a href="https://www.mysearchvisibility.hk/" target="_blank" rel="noreferrer">mysearchvisibility.hk <ArrowUpRight size={13} /></a><a href="https://www.myseogeoexperts.hk/" target="_blank" rel="noreferrer">myseogeoexperts.hk <ArrowUpRight size={13} /></a><a href="https://www.myairanking.hk/" target="_blank" rel="noreferrer">myairanking.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">Email us <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>Built for clarity, not noise.</span></div></footer> }
 
 function App() {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  return path === '/playbook' || path === '/playbook.html' ? <Playbook /> : <Home />;
+  if (path === '/playbook' || path === '/playbook.html') return <Playbook />;
+  if (path === '/authority' || path === '/authority.html') return <Authority />;
+  return <Home />;
 }
 
 createRoot(document.getElementById('root')).render(<App />);
