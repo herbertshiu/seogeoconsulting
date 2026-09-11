@@ -15,6 +15,31 @@
       "source": "/authority.html",
       "destination": "/authority",
       "permanent": true
+    },
+    {
+      "source": "/assets/index-:hash.js",
+      "destination": "/assets/main.js",
+      "permanent": true
+    },
+    {
+      "source": "/assets/index-:hash.css",
+      "destination": "/assets/main.css",
+      "permanent": true
+    },
+    {
+      "source": "/assets/main-:hash.js",
+      "destination": "/assets/main.js",
+      "permanent": true
+    },
+    {
+      "source": "/assets/main-:hash.css",
+      "destination": "/assets/main.css",
+      "permanent": true
+    },
+    {
+      "source": "/assets/chunk-:hash.js",
+      "destination": "/assets/main.js",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -29,6 +54,38 @@
     {
       "source": "/:path([^/.]+)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/playbook",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/authority",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+      ]
     }
   ]
 }
