@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ArrowUpRight, BookOpen, CalendarDays, Check, ChevronRight, ExternalLink, Mail, Menu, Search, Send, Sparkles, X } from 'lucide-react';
+import { advisoryMeta, advisoryPaths, advisorySources, advisoryUi, audiences, faqs, issues, monthSteps } from './advisoryContent.js';
 import './styles.css';
 
 const sources = [
@@ -19,12 +20,13 @@ const benchmarks = [
 ];
 
 const insights = [
+  { tag: 'ADVISORY', title: 'The same SEO and GEO issues show up at every size', text: 'A bilingual note, in English and Traditional Chinese, on entity splits, unanswered pages, scaled content, retrieval, and what to measure.', href: '/advisory' },
   { tag: 'FOUNDATION', title: 'The search surface is now a conversation', text: 'Classic rankings still matter. But the new question is whether your brand is clear enough to be selected, summarized, and cited in an answer.', href: '/playbook' },
   { tag: 'STRUCTURE', title: 'Build an evidence layer, not a content pile', text: 'The most useful SEO program connects entities, proof, first-hand experience, and internal links into one navigable knowledge system.', href: '/playbook#proof' },
   { tag: 'MEASUREMENT', title: 'Visibility is bigger than a position number', text: 'Track the full journey: impressions, qualified visits, branded demand, assisted conversions, and the pages that earn citations.', href: '/authority' },
 ];
 
-function Meta({ title, description, path = '' }) {
+function Meta({ title, description, path = '', locale = 'en_HK' }) {
   useEffect(() => {
     document.title = title;
     const set = (name, content, property = false) => {
@@ -36,9 +38,10 @@ function Meta({ title, description, path = '' }) {
     set('description', description);
     set('og:title', title, true);
     set('og:description', description, true);
-    set('og:type', path === '/playbook' || path === '/authority' ? 'article' : 'website', true);
+    set('og:type', path === '/playbook' || path === '/authority' || path === '/advisory' || path === '/zh/advisory' ? 'article' : 'website', true);
     set('og:url', `https://www.seogeoconsulting.hk${path}`, true);
     set('og:image', 'https://www.seogeoconsulting.hk/og.png', true);
+    set('og:locale', locale, true);
     set('twitter:card', 'summary_large_image');
     set('twitter:title', title);
     set('twitter:description', description);
@@ -46,11 +49,11 @@ function Meta({ title, description, path = '' }) {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.setAttribute('rel', 'canonical'); document.head.appendChild(canonical); }
     canonical.setAttribute('href', `https://www.seogeoconsulting.hk${path}`);
-  }, [title, description, path]);
+  }, [title, description, path, locale]);
   return null;
 }
 
-function Schema({ page = 'home' }) {
+function Schema({ page = 'home', lang = 'en' }) {
   useEffect(() => {
     const org = {
       '@type': 'Organization',
@@ -95,6 +98,35 @@ function Schema({ page = 'home' }) {
         inLanguage: 'en-HK',
         about: ['SEO', 'Generative engine optimization', 'Search visibility', 'Hong Kong'],
       };
+    } else if (page === 'advisory') {
+      const meta = advisoryMeta[lang];
+      const path = advisoryPaths[lang];
+      data = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Article',
+            headline: lang === 'zh' ? '諮詢備忘：任何規模的公司都面對的 SEO 與 GEO 問題' : 'Advisory note: SEO and GEO issues for companies of any size',
+            description: meta.description,
+            author: org,
+            publisher: org,
+            datePublished: '2026-10-05',
+            dateModified: '2026-10-05',
+            mainEntityOfPage: `https://www.seogeoconsulting.hk${path}`,
+            image: 'https://www.seogeoconsulting.hk/og.png',
+            inLanguage: meta.htmlLang,
+            about: lang === 'zh' ? ['SEO', '生成式引擎優化', '雙語網站'] : ['SEO', 'Generative engine optimization', 'Bilingual websites'],
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((item) => ({
+              '@type': 'Question',
+              name: item.q[lang],
+              acceptedAnswer: { '@type': 'Answer', text: item.a[lang] },
+            })),
+          },
+        ],
+      };
     } else {
       data = {
         '@context': 'https://schema.org',
@@ -116,19 +148,36 @@ function Schema({ page = 'home' }) {
     let script = document.getElementById('structured-data');
     if (!script) { script = document.createElement('script'); script.id = 'structured-data'; script.type = 'application/ld+json'; document.head.appendChild(script); }
     script.textContent = JSON.stringify(data);
-  }, [page]);
+  }, [page, lang]);
   return null;
 }
 
-function Header() {
+function Header({ lang = 'en' }) {
   const [open, setOpen] = React.useState(false);
+  const copy = lang === 'zh'
+    ? {
+        home: 'SEO / GEO Consulting 首頁',
+        nav: '主要導覽',
+        open: '開啟選單',
+        close: '關閉選單',
+        links: [['/#method', '方法'], ['/playbook', '手冊'], ['/authority', '權威指標'], ['/zh/advisory', '備忘'], ['/#case-study', '案例'], ['/#calculator', '回報試算'], ['/#insights', '現場筆記'], ['/#contact', '聯絡'], ['/#about', '關於']],
+        cta: '前往 itehk.com.hk',
+      }
+    : {
+        home: 'SEO / GEO Consulting home',
+        nav: 'Primary navigation',
+        open: 'Open menu',
+        close: 'Close menu',
+        links: [['/#method', 'Method'], ['/playbook', 'Playbook'], ['/authority', 'Authority'], ['/advisory', 'Advisory'], ['/#case-study', 'Case study'], ['/#calculator', 'ROI calculator'], ['/#insights', 'Field notes'], ['/#contact', 'Contact'], ['/#about', 'About']],
+        cta: 'Visit itehk.com.hk',
+      };
   return <header className="site-header"><div className="nav-wrap">
-    <a className="brand" href="/" aria-label="SEO / GEO Consulting home"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a>
-    <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">
-      <a href="/#method">Method</a><a href="/playbook">Playbook</a><a href="/authority">Authority</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a><a href="/#about">About</a>
-      <a className="nav-cta" href="https://itehk.com.hk" target="_blank" rel="noreferrer">Visit itehk.com.hk <ArrowUpRight size={16} /></a>
+    <a className="brand" href="/" aria-label={copy.home}><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a>
+    <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label={copy.nav}>
+      {copy.links.map(([href, label]) => <a href={href} key={href}>{label}</a>)}
+      <a className="nav-cta" href="https://itehk.com.hk" target="_blank" rel="noreferrer">{copy.cta} <ArrowUpRight size={16} /></a>
     </nav>
-    <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button>
+    <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? copy.close : copy.open}>{open ? <X /> : <Menu />}</button>
   </div></header>;
 }
 
@@ -173,7 +222,7 @@ function Home() {
       <RoiCalculator />
       <AuditRequest />
       <section className="source-band section-shell"><div><span className="eyebrow">SOURCE-LED BY DESIGN</span><h2>Good guidance<br /><span>shows its work.</span></h2></div><div className="source-copy"><p>We anchor our recommendations in first-party documentation and clearly label the difference between a platform requirement, a tested practice, and an informed hypothesis.</p><a className="button button-light" href="/playbook#sources">See our sources <BookOpen size={17} /></a></div></section>
-      <section className="closing section-shell"><div className="closing-mark">S<span>/</span>G</div><div><h2>Build a signal<br />that lasts.</h2><p>Want the practical version? Start with the playbook, then score your site with the authority checklist.</p><div className="hero-actions"><a className="button button-primary" href="/playbook">Start reading <ArrowUpRight size={17} /></a><a className="text-link" href="/authority">Authority scorecard <ChevronRight size={16} /></a></div></div></section>
+      <section className="closing section-shell"><div className="closing-mark">S<span>/</span>G</div><div><h2>Build a signal<br />that lasts.</h2><p>Want the practical version? Start with the playbook, score the site, or read the advisory for companies of any size.</p><div className="hero-actions"><a className="button button-primary" href="/playbook">Start reading <ArrowUpRight size={17} /></a><a className="text-link" href="/authority">Authority scorecard <ChevronRight size={16} /></a><a className="text-link" href="/advisory">Advisory note <ChevronRight size={16} /></a></div></div></section>
     </main><Footer />
   </>;
 }
@@ -194,14 +243,65 @@ function Authority() {
   return <><Meta title="Authority Scorecard — SEO / GEO Consulting" description="A practical SEO and GEO authority scorecard for Hong Kong teams: entity clarity, intent answers, proof density, crawl health, and citation readiness in one citeable checklist." path="/authority" /><Schema page="authority" /><Header /><main className="playbook-page"><section className="playbook-hero section-shell"><div className="section-label">FIELD GUIDE / 02</div><h1>Authority<br /><span>scorecard.</span></h1><p>Domain rating follows referring domains. Earn them by becoming clearer, more useful, and easier to cite — then ask partners to link the pages that deserve it.</p><div className="updated"><span className="pulse"></span> LAST UPDATED · SEPTEMBER 2026</div></section><section className="playbook-body section-shell"><aside><div className="toc-title">SCORE THESE</div>{pillars.map(p => <a href={`#${p.id}`} key={p.id}>{p.n} — {p.title}</a>)}<a href="#use">How to use this</a><a href="/playbook">Playbook</a></aside><div className="guide-content"><p className="standfirst">Ahrefs Domain Rating is a backlink metric. On-page work does not raise DR by itself — but citeable assets and clear entity signals make it easier for other sites (including your own network) to link you with confidence.</p>{pillars.map(p => <GuideStep id={p.id} number={p.n} title={p.title} lead={p.lead} key={p.id}><div className="check-list">{p.checks.map(c => <div key={c}><Check size={17} />{c}</div>)}</div></GuideStep>)}<section className="sources" id="use"><div className="section-label">PRACTICE</div><h2>How to use<br /><span>the scorecard.</span></h2><p>Score each pillar from 0–2 (missing, partial, solid). Prioritise anything below 2 before you invest in outreach. When a pillar is solid, point partners to this page or the <a className="arrow-link" href="/playbook" style={{display:'inline-flex'}}>playbook</a> as the destination URL — not only the homepage.</p><div className="measure-grid"><div><strong>Link targets</strong><span>Homepage · Playbook · Authority scorecard</span></div><div><strong>Network</strong><span>Owned sites · partners · press · directories</span></div><div><strong>Measure</strong><span>Referring domains · branded queries · citations</span></div></div><a className="button button-primary" href="/#contact" style={{marginTop:'28px'}}>Request an audit <ArrowUpRight size={17} /></a></section></div></section></main><Footer /></>;
 }
 
+function Advisory({ lang = 'en' }) {
+  const ui = advisoryUi[lang];
+  const meta = advisoryMeta[lang];
+  useEffect(() => {
+    document.documentElement.lang = meta.htmlLang;
+  }, [meta.htmlLang]);
+  return <><Meta title={meta.title} description={meta.description} path={advisoryPaths[lang]} locale={meta.locale} /><Schema page="advisory" lang={lang} /><Header lang={lang} /><main className={lang === 'zh' ? 'playbook-page page-zh' : 'playbook-page'}>
+    <section className="playbook-hero section-shell">
+      <div className="section-label">{ui.kicker}</div>
+      <h1>{ui.h1}<br /><span>{ui.h1Accent}</span></h1>
+      <p>{ui.lede}</p>
+      <nav className="lang-switch" aria-label={ui.langLabel}>
+        <a href="/advisory" hrefLang="en-HK" lang="en-HK" aria-current={lang === 'en' ? 'page' : undefined}>English</a>
+        <a href="/zh/advisory" hrefLang="zh-Hant-HK" lang="zh-Hant-HK" aria-current={lang === 'zh' ? 'page' : undefined}>繁體中文</a>
+      </nav>
+      <div className="updated"><span className="pulse"></span> {ui.updated}</div>
+      <p className="advisory-byline">{ui.byline}{lang === 'zh' ? ` · ${ui.restOfSite}` : ''}</p>
+    </section>
+    <section className="proof-strip" aria-label={lang === 'zh' ? '適用對象' : 'Who this is for'}>
+      {audiences.map((item) => <div key={item.n}><span className="strip-number">{item.n}</span><strong>{item.title[lang]}</strong><span>{item.text[lang]}</span></div>)}
+    </section>
+    <section className="playbook-body section-shell">
+      <aside>
+        <div className="toc-title">{ui.tocTitle}</div>
+        {issues.map((issue) => <a href={`#${issue.id}`} key={issue.id}>{issue.n} — {issue.toc[lang]}</a>)}
+        <a href="#month">{ui.monthTitle}</a>
+        <a href="#faq">{ui.faqTitle}</a>
+        <a href="#sources">{ui.sourcesTitle}</a>
+      </aside>
+      <div className="guide-content">
+        {issues.map((issue) => <GuideStep id={issue.id} number={issue.n} title={issue.title[lang]} lead={issue.lead[lang]} key={issue.id}>
+          {issue.paragraphs.map((paragraph, index) => <p key={index}>{paragraph[lang]}</p>)}
+          {issue.contrast && <div className="mini-table">{issue.contrast.map((row) => <div key={row.label[lang]}><strong>{row.label[lang]}</strong><span>{row.text[lang]}</span></div>)}</div>}
+          {issue.quote && <blockquote>{issue.quote[lang]}<cite>— {issue.quote.cite[lang]}{ui.quoteNote}</cite></blockquote>}
+          {issue.checks && <div className="check-list">{issue.checks.map((check) => <div key={check[lang]}><Check size={17} />{check[lang]}</div>)}</div>}
+          {issue.bands && <div className="size-grid">{issue.bands.map((band) => <article key={band.title[lang]}><h3>{band.title[lang]}</h3><p>{band.text[lang]}</p></article>)}</div>}
+        </GuideStep>)}
+        <section className="guide-step" id="month"><div className="guide-number">07</div><div><h2>{ui.monthTitle}</h2><p className="guide-lead">{ui.monthLead}</p><ol className="check-list month-list">{monthSteps.map((step, index) => <li key={index}><span className="step-index">0{index + 1}</span>{step[lang]}</li>)}</ol></div></section>
+        <section className="sources" id="faq"><div className="section-label">FAQ</div><h2>{ui.faqTitle}</h2><div className="faq-list">{faqs.map((item) => <article className="faq-item" key={item.q[lang]}><h3>{item.q[lang]}</h3><p>{item.a[lang]}</p></article>)}</div></section>
+        <section className="sources" id="sources"><div className="section-label">{lang === 'zh' ? '參考' : 'REFERENCES'}</div><h2>{ui.sourcesTitle}</h2><p>{ui.sourcesLead}</p>{advisorySources.map((source) => <a className="source-row" href={source.href} target="_blank" rel="noreferrer" key={source.n}><span>{source.n}</span><div><small>{source.label}</small><strong>{source.title[lang]}</strong></div><ExternalLink size={16} /></a>)}</section>
+        <section className="sources" id="limits"><div className="section-label">{ui.limitsTitle}</div><p>{ui.limits}</p><div className="hero-actions"><a className="button button-primary" href="/#contact">{ui.cta} <ArrowUpRight size={17} /></a><a className="text-link" href="/playbook">{ui.playbook} <ChevronRight size={16} /></a><a className="text-link" href="/authority">{ui.authority} <ChevronRight size={16} /></a></div></section>
+      </div>
+    </section>
+  </main><Footer lang={lang} /></>;
+}
+
 function GuideStep({ id, number, title, lead, children }) { return <section className="guide-step" id={id}><div className="guide-number">{number}</div><div><h2>{title}</h2><p className="guide-lead">{lead}</p>{children}</div></section>; }
 
-function Footer() { return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>Practical thinking for the next search surface.</p></div><div className="footer-links"><div><small>EXPLORE</small><a href="/playbook">Playbook</a><a href="/authority">Authority scorecard</a><a href="/#method">Method</a><a href="/#case-study">Case study</a><a href="/#calculator">ROI calculator</a><a href="/#insights">Field notes</a><a href="/#contact">Contact</a></div><div><small>NETWORK</small><a href="https://itehk.com.hk/" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="https://www.seogeoworks.hk/resources/" target="_blank" rel="noreferrer">seogeoworks resources <ArrowUpRight size={13} /></a><a href="https://www.seogeoworks.hk/resources/seo-vs-geo.html" target="_blank" rel="noreferrer">SEO vs GEO <ArrowUpRight size={13} /></a><a href="https://www.mysearchvisibility.hk/" target="_blank" rel="noreferrer">mysearchvisibility.hk <ArrowUpRight size={13} /></a><a href="https://www.myseogeoexperts.hk/" target="_blank" rel="noreferrer">myseogeoexperts.hk <ArrowUpRight size={13} /></a><a href="https://www.myairanking.hk/" target="_blank" rel="noreferrer">myairanking.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">Email us <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>Built for clarity, not noise.</span></div></footer> }
+function Footer({ lang = 'en' }) {
+  const zh = lang === 'zh';
+  return <footer className="footer"><div className="section-shell footer-grid"><div><a className="brand" href="/"><span className="brand-mark">S<span>/</span>G</span><span>SEO / GEO<br /><em>CONSULTING</em></span></a><p>{zh ? '為下一個搜尋表面而寫的實用思考。' : 'Practical thinking for the next search surface.'}</p></div><div className="footer-links"><div><small>{zh ? '探索' : 'EXPLORE'}</small><a href="/playbook">{zh ? '手冊' : 'Playbook'}</a><a href="/authority">{zh ? '權威指標' : 'Authority scorecard'}</a><a href={zh ? '/zh/advisory' : '/advisory'}>{zh ? '諮詢備忘' : 'Advisory note'}</a><a href="/#method">{zh ? '方法' : 'Method'}</a><a href="/#case-study">{zh ? '案例' : 'Case study'}</a><a href="/#calculator">{zh ? '回報試算' : 'ROI calculator'}</a><a href="/#insights">{zh ? '現場筆記' : 'Field notes'}</a><a href="/#contact">{zh ? '聯絡' : 'Contact'}</a></div><div><small>{zh ? '網絡' : 'NETWORK'}</small><a href="https://itehk.com.hk/" target="_blank" rel="noreferrer">itehk.com.hk <ArrowUpRight size={13} /></a><a href="https://www.seogeoworks.hk/resources/" target="_blank" rel="noreferrer">{zh ? 'seogeoworks 資源' : 'seogeoworks resources'} <ArrowUpRight size={13} /></a><a href="https://www.seogeoworks.hk/resources/seo-vs-geo.html" target="_blank" rel="noreferrer">SEO vs GEO <ArrowUpRight size={13} /></a><a href="https://www.mysearchvisibility.hk/" target="_blank" rel="noreferrer">mysearchvisibility.hk <ArrowUpRight size={13} /></a><a href="https://www.myseogeoexperts.hk/" target="_blank" rel="noreferrer">myseogeoexperts.hk <ArrowUpRight size={13} /></a><a href="https://www.myairanking.hk/" target="_blank" rel="noreferrer">myairanking.hk <ArrowUpRight size={13} /></a><a href="mailto:hello@seogeoconsulting.hk">{zh ? '電郵我們' : 'Email us'} <ArrowUpRight size={13} /></a></div></div></div><div className="section-shell footer-bottom"><span>© 2026 SEO / GEO Consulting</span><span>{zh ? '為清楚而建，而不是為噪音。' : 'Built for clarity, not noise.'}</span></div></footer>;
+}
 
 function App() {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
   if (path === '/playbook' || path === '/playbook.html') return <Playbook />;
   if (path === '/authority' || path === '/authority.html') return <Authority />;
+  if (path === '/advisory' || path === '/advisory.html') return <Advisory lang="en" />;
+  if (path === '/zh/advisory' || path === '/advisory-zh.html' || path === '/zh/advisory.html') return <Advisory lang="zh" />;
   return <Home />;
 }
 

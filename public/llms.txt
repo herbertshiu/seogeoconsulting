@@ -6,6 +6,8 @@
 
 - [Home](https://www.seogeoconsulting.hk/): why search visibility now requires both SEO and GEO
 - [Playbook](https://www.seogeoconsulting.hk/playbook): define the entity, answer intent, prove the claim, measure the mention
+- [Advisory note (English)](https://www.seogeoconsulting.hk/advisory): SEO and GEO issues for companies of any size, with a different operating rhythm for small, mid-size, and larger teams
+- [諮詢備忘（繁體中文）](https://www.seogeoconsulting.hk/zh/advisory): 任何規模的公司都面對的 SEO / GEO 問題；標準相同，運作節奏不同
 
 ## Contact
 
